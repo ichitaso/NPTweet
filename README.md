@@ -3,4 +3,4 @@
 Quickly Tweets your Now Playing song with Flipswitch
     
 ## LICENSE
-MIT LIcENCE
+MIT LICENCE
