@@ -1,0 +1,15 @@
+Author: ichitaso <willfeeltips+npt@gmail.com>
+Maintainer: BigBoss <bigboss@thebigboss.org>
+Name: NPTweet (FlipSwitch)
+Package: com.ichitaso.nptweet
+Depends: firmware (>= 9.0), mobilesubstrate, preferenceloader, com.a3tweaks.flipswitch
+Section: Addons (Flipswitch)
+Version: 1.0-1
+Architecture: iphoneos-arm
+Description: Quickly tweet the song by FlipSwitch
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=flipswitchnptweetDp
+Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=flipswitchnptweetDp
+Sponsor: thebigboss.org <http://thebigboss.org>
+dev: ichitaso
+Tag: purpose::extension, compatible::ios9, compatible::ios10
+Icon: file:///Library/PreferenceBundles/NPTweetSettings.bundle/NPTweet@2x.png

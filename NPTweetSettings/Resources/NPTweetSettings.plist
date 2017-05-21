@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>isStaticText</key>
+			<true/>
+			<key>label</key>
+			<string>Settings</string>
+			<key>footerText</key>
+			<string>
+	_SONG_: Display the current Track
+	_ARTIST_: Display the current Artist
+	_ALBUM_: Display the current Album
+	_APP_: Display the Application Name</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>PostNotification</key>
+			<string>com.ichitaso.nptweet.settingschanged</string>
+			<key>defaults</key>
+			<string>com.ichitaso.nptweet</string>
+			<key>default</key>
+			<string>#NowPlaying _SONG_ - _ALBUM_ by _ARTIST_ on _APP_</string>
+			<key>placeholder</key>
+			<string>#NowPlaying _SONG_ - _ALBUM_ by _ARTIST_ on _APP_</string>
+			<key>key</key>
+			<string>format</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>copyFormat</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>alignment</key>
+			<integer>2</integer>
+			<key>label</key>
+			<string>Copy Default Format</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Information</string>
+			<key>footerText</key>
+			<string>Please consider purchase my paid tweak instead of donate if you like this tweak.</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>openTwitter:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>twitter.png</string>
+			<key>label</key>
+			<string>Follow on Twitter</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>icon</key>
+			<string>apps.png</string>
+			<key>label</key>
+			<string>Other Tweaks</string>
+			<key>detail</key>
+			<string>WFTWebView</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>© Will feel Tips by ichitaso</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>NPTweet</string>
+</dict>
+</plist>

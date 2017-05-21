@@ -1,0 +1,10 @@
+{
+    entry = {
+	bundle = NPTweetSettings;
+	cell = PSLinkCell;
+	detail = NPTweetListController;
+	icon = NPTweet.png;
+	isController = 1;
+	label = NPTweet;
+    };
+}
