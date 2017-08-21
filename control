@@ -4,7 +4,7 @@ Name: NPTweet (FlipSwitch)
 Package: com.ichitaso.nptweet
 Depends: firmware (>= 9.0), mobilesubstrate, preferenceloader, com.a3tweaks.flipswitch
 Section: Addons (Flipswitch)
-Version: 1.0-1
+Version: 1.0-2
 Architecture: iphoneos-arm
 Description: Quickly tweet the song by FlipSwitch
 Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=flipswitchnptweetDp

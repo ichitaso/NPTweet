@@ -1,10 +1,13 @@
 #import <UIKit/UIKit.h>
 #import <Preferences/PSControlTableCell.h>
 #import <Preferences/PSListController.h>
+#import <SafariServices/SafariServices.h>
 
 @interface PSListController (NPTweet)
 - (void)loadView;
 - (void)_returnKeyPressed:(id)arg1;
+// Open in Browser
+- (void)presentViewController:(id)arg1 animated:(BOOL)arg2 completion:(id)arg3;
 @end
 
 @interface PSTableCell (NPTweet)
@@ -130,7 +133,7 @@ static CGFloat const kHBFPHeaderHeight = 160.f;
         [items addObject:@"Open in TweetLogix"];
     }
     
-    [items addObject:@"Open in Safari"];
+    [items addObject:@"Open in Browser"];
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Follow @ichitaso"
                                                        delegate:self
@@ -142,7 +145,7 @@ static CGFloat const kHBFPHeaderHeight = 160.f;
         [sheet addButtonWithTitle:buttonTitle];
     }
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:@"Cancel"];
-    [sheet showInView:[UIApplication sharedApplication].keyWindow];
+    [sheet showInView:self.view];
     [sheet release];
 }
 
@@ -158,8 +161,12 @@ static CGFloat const kHBFPHeaderHeight = 160.f;
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tweetlogix:///home?username=ichitaso"]];
     } else if ([option isEqualToString:@"Open in Twitter"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"twitter://user?screen_name=ichitaso"]];
-    } else if ([option isEqualToString:@"Open in Safari"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/ichitaso/"]];
+    } else if ([option isEqualToString:@"Open in Browser"]) {
+        double delayInSeconds = 0.8;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self openURLInBrowser:@"https://twitter.com/ichitaso/"];
+        });
     }
 }
 
@@ -177,126 +184,14 @@ static CGFloat const kHBFPHeaderHeight = 160.f;
     [super _returnKeyPressed:notification];
 }
 
-@end
-
-static NSString * const InitialURL = @"http://willfeeltips.appspot.com/depiction/donate.html";
-
-@interface WFTWebBrowserViewController : UIViewController
+- (void)donate
 {
-    UIWebView *webView;
-}
-@property (nonatomic, retain) UIWebView *webView;
-
-@end
-
-@implementation WFTWebBrowserViewController
-
-@synthesize webView;
-
-- (void)dealloc
-{
-    [webView release];
-    [super dealloc];
+    [self openURLInBrowser:@"http://willfeeltips.appspot.com/depiction/donate.html"];
 }
 
-- (void)viewDidLoad
-{
-    CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
-    
-    self.webView = [[[UIWebView alloc] initWithFrame:webFrame] autorelease];
-    self.webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    
-    [self.view addSubview:self.webView];
-    
-    NSURL *url = [NSURL URLWithString:InitialURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    [self.webView loadRequest:request];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.webView = nil;
-}
-
-- (void)btnBackPress
-{
-    if (self.webView.canGoBack) {
-        [self.webView goBack];
-    }
-}
-
-- (void)btnNextPress
-{
-    if (self.webView.canGoForward) {
-        [self.webView goForward];
-    }
-}
-
-@end
-
-@interface WFTWebView : PSViewController
-{
-    WFTWebBrowserViewController *_viewController;
-    UIView *view;
-}
-@end
-
-@implementation WFTWebView
-
-- (id)initForContentSize:(CGSize)size
-{
-    CGRect r = [[UIScreen mainScreen] bounds];
-    CGFloat w = r.size.width;
-    CGFloat h = r.size.height;
-    
-    if ([[PSViewController class] instancesRespondToSelector:@selector(initForContentSize:)]) {
-        self = [super initForContentSize:size];
-    } else {
-        self = [super init];
-    }
-    if (self) {
-        CGRect frame =  CGRectMake(0, 0, w, h);
-        view = [[UIView alloc] initWithFrame:frame];
-        _viewController = [[WFTWebBrowserViewController alloc] init];
-        _viewController.view.frame = CGRectMake(_viewController.view.frame.origin.x, _viewController.view.frame.origin.y + 44, _viewController.view.frame.size.width, _viewController.view.frame.size.height - 44);
-        [view addSubview:_viewController.view];
-        
-        if ([self respondsToSelector:@selector(navigationItem)]) {
-            //Set Back Button
-            UIBarButtonItem *rightButton =
-            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
-                                                          target:self
-                                                          action:@selector(btnBackPress)];
-            
-            [[self navigationItem] setRightBarButtonItem:rightButton];
-            [rightButton release];
-        }
-    }
-    return self;
-}
-
-- (UIView *)view
-{
-    return view;
-}
-
-- (CGSize)contentSize
-{
-    return [view frame].size;
-}
-
-- (void)dealloc
-{
-    [_viewController release];
-    [view release];
-    [super dealloc];
-}
-
-- (void)btnBackPress
-{
-    [_viewController btnBackPress];
+- (void)openURLInBrowser:(NSString *)url {
+    SFSafariViewController *safari = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:url] entersReaderIfAvailable:NO];
+    [self presentViewController:safari animated:YES completion:nil];
 }
 
 @end

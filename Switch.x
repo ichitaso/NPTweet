@@ -227,7 +227,7 @@ static void openSettings()
         CGRect screenSize = [[UIScreen mainScreen] bounds];
         
         window = [[UIWindow alloc] initWithFrame:screenSize];
-        window.windowLevel = 666666;
+        window.windowLevel = UIWindowLevelAlert;
         
         UIView *uv = [[UIView alloc] initWithFrame:screenSize];
         

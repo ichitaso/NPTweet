@@ -71,8 +71,8 @@
 			<string>apps.png</string>
 			<key>label</key>
 			<string>Other Tweaks</string>
-			<key>detail</key>
-			<string>WFTWebView</string>
+			<key>action</key>
+			<string>donate</string>
 		</dict>
 		<dict>
 			<key>cell</key>

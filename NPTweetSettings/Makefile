@@ -4,7 +4,7 @@ GO_EASY_ON_ME = 1
 BUNDLE_NAME = NPTweetSettings
 NPTweetSettings_FILES = NPTweetSettings.mm
 NPTweetSettings_INSTALL_PATH = /Library/PreferenceBundles
-NPTweetSettings_FRAMEWORKS = UIKit
+NPTweetSettings_FRAMEWORKS = UIKit SafariServices
 NPTweetSettings_PRIVATE_FRAMEWORKS = Preferences
 
 include $(THEOS)/makefiles/common.mk
